@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerState
 {
-    public PlayerJumpState(TestPlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+    public PlayerJumpState(TestPlayerController player, PlayerStateFactory stateFactory) : base(player, stateFactory)
     {
     }
 
     public override void EnterState()
     {
         base.EnterState();
+        //run jump here
     }
 
     public override void ExitState()
@@ -21,5 +22,10 @@ public class PlayerJumpState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
+    }
+    
+    public override void CheckSwitchState()
+    {
+        base.CheckSwitchState();
     }
 }

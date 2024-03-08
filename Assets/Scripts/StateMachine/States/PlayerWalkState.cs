@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWalkState : PlayerState
 {
-    public PlayerWalkState(TestPlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+    public PlayerWalkState(TestPlayerController player, PlayerStateFactory stateFactory) : base(player, stateFactory)
     {
     }
 
@@ -21,5 +21,11 @@ public class PlayerWalkState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
+        
+    }
+
+    public override void CheckSwitchState()
+    {
+        base.CheckSwitchState();
     }
 }

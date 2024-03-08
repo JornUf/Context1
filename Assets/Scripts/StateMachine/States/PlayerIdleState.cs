@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerState
 {
-    public PlayerIdleState(TestPlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+    public PlayerIdleState(TestPlayerController player, PlayerStateFactory stateFactory) : base(player, stateFactory)
     {
     }
 
@@ -21,5 +21,13 @@ public class PlayerIdleState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
+    }
+    
+    public override void CheckSwitchState()
+    {
+        if (player.IsJumpPressed && player.IsGrounded)
+        {
+            SwitchState(factory.Jump());
+        }
     }
 }

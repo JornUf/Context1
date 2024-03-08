@@ -7,15 +7,26 @@ public abstract class PlayerState
 {
 
     protected TestPlayerController player;
-    protected PlayerStateMachine stateMachine;
+    protected PlayerStateFactory factory; 
+    
+    public PlayerState(TestPlayerController playerConroller, PlayerStateFactory stateFactory)
+    {
+        player = playerConroller;
+        factory = stateFactory;
+    }
     
     public virtual void EnterState() {} 
     public virtual void ExitState() {}
     public virtual void UpdateState() {}
+    
+    public virtual void CheckSwitchState() {}
 
-    public PlayerState(TestPlayerController player, PlayerStateMachine stateMachine)
+    protected void SwitchState(PlayerState newstate)
     {
-        this.player = player;
-        this.stateMachine = stateMachine;
+        //switches between states ... duh
+        ExitState();
+        newstate.EnterState();
+        
+        player.CurrentState = newstate;
     }
 }

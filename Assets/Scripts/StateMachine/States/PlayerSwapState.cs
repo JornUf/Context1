@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSwapState : PlayerState
 {
-    public PlayerSwapState(TestPlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+    public PlayerSwapState(TestPlayerController player, PlayerStateFactory stateFactory) : base(player, stateFactory)
     {
     }
 
@@ -21,5 +21,10 @@ public class PlayerSwapState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
+    }
+    
+    public override void CheckSwitchState()
+    {
+        base.CheckSwitchState();
     }
 }
