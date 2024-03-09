@@ -8,6 +8,8 @@ public class SwapStatsPlayer : SwapStats
     public float startRunSpeed = 8;
     public float startJumpSpeed = 11.5f;
     public float startGravitySpeed = 20f;
+    public float startAmountofDoubleJumps = 1;
+    public float startDoubleJumpHeight = 7.5f;
     
     [HideInInspector]
     public FloatRef WalkSpeed;
@@ -17,6 +19,10 @@ public class SwapStatsPlayer : SwapStats
     public FloatRef JumpSpeed;
     [HideInInspector]
     public FloatRef GravitySpeed;
+    [HideInInspector] 
+    public FloatRef DoubleJumpAmount;
+    [HideInInspector] 
+    public FloatRef DoubleJumpHeight;
     
     // Start is called before the first frame update
     void Start()
@@ -40,6 +46,16 @@ public class SwapStatsPlayer : SwapStats
         GravitySpeed.Name = "FallSpeed";
         GravitySpeed.Value = startGravitySpeed;
         floatList.Add(GravitySpeed);
+        
+        DoubleJumpAmount = ScriptableObject.CreateInstance<FloatRef>();
+        DoubleJumpAmount.Name = "DoubleJumps";
+        DoubleJumpAmount.Value = startAmountofDoubleJumps;
+        floatList.Add(DoubleJumpAmount);
+        
+        DoubleJumpHeight = ScriptableObject.CreateInstance<FloatRef>();
+        DoubleJumpHeight.Name = "DoubleJumpHeight";
+        DoubleJumpHeight.Value = startDoubleJumpHeight;
+        floatList.Add(DoubleJumpHeight);
     }
 
     // Update is called once per frame

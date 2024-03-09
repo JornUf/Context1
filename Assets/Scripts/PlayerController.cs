@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool canMove = false;
 
+    private float amountOfDoubleJumpsDone = 0;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -41,9 +43,14 @@ public class PlayerController : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (Input.GetButtonUp("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = _statsPlayer.JumpSpeed.Value;
+        }
+        else if(Input.GetButtonUp("Jump") && canMove && amountOfDoubleJumpsDone < _statsPlayer.DoubleJumpAmount.Value)
+        {
+            moveDirection.y = _statsPlayer.DoubleJumpHeight.Value;
+            amountOfDoubleJumpsDone += 1;
         }
         else
         {
@@ -56,6 +63,10 @@ public class PlayerController : MonoBehaviour
         if (!characterController.isGrounded)
         {
             moveDirection.y -= _statsPlayer.GravitySpeed.Value * Time.deltaTime;
+        }
+        else
+        {
+            amountOfDoubleJumpsDone = 0;
         }
 
         // Player and Camera rotation
@@ -80,10 +91,15 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y <= -5)
         {
-            transform.position = respawnPoint.position;
-            transform.rotation = respawnPoint.rotation;
-            StartSwapStuff();
+            DieOrWin();
         }
+    }
+
+    public void DieOrWin()
+    {
+        transform.position = respawnPoint.position;
+        transform.rotation = respawnPoint.rotation;
+        StartSwapStuff();
     }
 
     public void backtogame()

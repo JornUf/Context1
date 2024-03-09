@@ -11,6 +11,9 @@ public class SwapStats : MonoBehaviour
     [SerializeField] private TMP_Dropdown dropDownR;
     [SerializeField] private Button confirmButton;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private Button startButton;
+    [SerializeField] private GameObject startPlayer2;
+    [SerializeField] private Timer _timer;
     
     private FloatRef selectedValueL;
     private FloatRef selectedValueR;
@@ -35,8 +38,6 @@ public class SwapStats : MonoBehaviour
         dropDownL.gameObject.SetActive(true);
         confirmButton.gameObject.SetActive(true);
         
-        dropDownL.onValueChanged.AddListener(valueChangedL);
-        dropDownR.onValueChanged.AddListener(valueChangedR);
         confirmButton.onClick.AddListener(confirmClicked);
         
         List<TMP_Dropdown.OptionData> optionslist = new List<TMP_Dropdown.OptionData>();
@@ -57,42 +58,32 @@ public class SwapStats : MonoBehaviour
         dropDownR.options.Clear();
         selectedValueL = null;
         selectedValueR = null;
-        dropDownL.onValueChanged.RemoveAllListeners();
-        dropDownR.onValueChanged.RemoveAllListeners();
         confirmButton.onClick.RemoveAllListeners();
         dropDownR.gameObject.SetActive(false);
         dropDownL.gameObject.SetActive(false);
         confirmButton.gameObject.SetActive(false);
+        startPlayer2.SetActive(true);
+        startButton.onClick.AddListener(startGame);
+    }
+
+    public void startGame()
+    {
+        startButton.onClick.RemoveAllListeners();
+        startPlayer2.SetActive(false);
+        _timer.StartTimer();
         _playerController.backtogame();
     }
     
 
-    public void valueChangedL(int index)
-    {
-        print("L");
-        selectedValueL = floatList[index];
-    }
-
-    public void valueChangedR(int index)
-    {
-        print("R");
-        selectedValueR = floatList[index];
-    }
-
     public void confirmClicked()
     {
-        print("a");
-        if (selectedValueL != null && selectedValueR != null)
-        {
-            float temp = selectedValueL.Value;
-            selectedValueL.Value = selectedValueR.Value;
-            selectedValueR.Value = temp;
-            disableSwapMode();
-        }
-        else
-        {
-            //do nothing maybe give a warning that nothing has been selected
-        }
+        selectedValueL = floatList[dropDownL.value];
+        selectedValueR = floatList[dropDownR.value];
+
+        float temp = selectedValueL.Value;
+        selectedValueL.Value = selectedValueR.Value;
+        selectedValueR.Value = temp;
+        disableSwapMode();
     }
 
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Floatref", order = 1)]
