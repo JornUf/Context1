@@ -10,13 +10,15 @@ public class PlayerSwapState : PlayerState
 
     public override void EnterState()
     {
+        //locks cursor and enables the swap mode. 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-        player.StatsPlayer.enableSwapMode();
+        player.StatsPlayer.enableSwapMode(); //mind capitals in the function name.
     }
 
     public override void ExitState()
     {
+        //unlocks cursor when exiting the swap mode. 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

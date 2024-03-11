@@ -5,7 +5,7 @@ using UnityEngine;
 //template for every non-parent state.
 public abstract class PlayerState
 {
-
+    //playercontroller and statefactory
     protected TestPlayerController player;
     protected PlayerStateFactory factory; 
     

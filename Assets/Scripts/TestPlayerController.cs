@@ -80,7 +80,6 @@ public class TestPlayerController : MonoBehaviour
     private void OnMovementInput(InputAction.CallbackContext context)
     {
         currentMovementInput = context.ReadValue<Vector2>();
-        Debug.Log(currentMovementInput);
         isMovePressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
     }
     
@@ -129,7 +128,7 @@ public class TestPlayerController : MonoBehaviour
     {
         if (!characterController.isGrounded)
         {
-            currentMoveDirection.y -= statsPlayer.GravitySpeed.Value;
+            currentMoveDirection.y -= statsPlayer.GravitySpeed.Value * Time.deltaTime;
         }
     }
 

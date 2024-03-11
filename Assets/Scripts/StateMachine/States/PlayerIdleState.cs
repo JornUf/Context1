@@ -10,7 +10,10 @@ public class PlayerIdleState : PlayerState
 
     public override void EnterState()
     {
-        base.EnterState();
+        Vector3 moveDirection = player.CurrentMoveDirection;
+        moveDirection.x = 0;
+        moveDirection.z = 0;
+        player.CurrentMoveDirection = moveDirection;
     }
 
     public override void ExitState()

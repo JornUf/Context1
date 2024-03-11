@@ -30,12 +30,15 @@ public class PlayerWalkState : PlayerState
 
     public override void CheckSwitchState()
     {
-        if (player.IsRunPressed)
+        if (!player.IsMovePressed)
         {
-            SwitchState(factory.Run());
+            SwitchState(factory.Idle());
         } else if (player.IsJumpPressed && player.IsGrounded)
         {
             SwitchState(factory.Jump());
+        } else if (player.IsRunPressed)
+        {
+            SwitchState(factory.Run());
         }
     }
 }

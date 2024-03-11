@@ -824,8 +824,8 @@ MonoBehaviour:
   _playerController: {fileID: 0}
   startWalkSpeed: 7.5
   startRunSpeed: 8
-  startJumpSpeed: 11.5
-  startGravitySpeed: 9.81
+  startJumpSpeed: 14
+  startGravitySpeed: 11
   WalkSpeed: {fileID: 0}
   RunSpeed: {fileID: 0}
   JumpSpeed: {fileID: 0}
