@@ -26,6 +26,9 @@ public class PlayerJumpState : PlayerState
     
     public override void CheckSwitchState()
     {
-        base.CheckSwitchState();
+        if (player.IsGrounded)
+        {
+            SwitchState(factory.Idle());
+        } 
     }
 }

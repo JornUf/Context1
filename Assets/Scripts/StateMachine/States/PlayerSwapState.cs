@@ -10,12 +10,15 @@ public class PlayerSwapState : PlayerState
 
     public override void EnterState()
     {
-        base.EnterState();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        player.StatsPlayer.enableSwapMode();
     }
 
     public override void ExitState()
     {
-        base.ExitState();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public override void UpdateState()
@@ -25,6 +28,9 @@ public class PlayerSwapState : PlayerState
     
     public override void CheckSwitchState()
     {
-        base.CheckSwitchState();
+        if (!player.IsSwapPressed && player.IsGrounded)
+        {
+            SwitchState(factory.Idle());
+        }
     }
 }

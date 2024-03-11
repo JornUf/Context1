@@ -20,12 +20,22 @@ public class PlayerWalkState : PlayerState
 
     public override void UpdateState()
     {
-        base.UpdateState();
-        
+        Vector3 moveDirection = player.CurrentMoveDirection;
+        float speed = player.StatsPlayer.WalkSpeed.Value;
+        moveDirection.x = player.CurrentMovementInput.x * speed;
+        moveDirection.z = player.CurrentMovementInput.y * speed;
+
+        player.CurrentMoveDirection = moveDirection;
     }
 
     public override void CheckSwitchState()
     {
-        base.CheckSwitchState();
+        if (player.IsRunPressed)
+        {
+            SwitchState(factory.Run());
+        } else if (player.IsJumpPressed && player.IsGrounded)
+        {
+            SwitchState(factory.Jump());
+        }
     }
 }

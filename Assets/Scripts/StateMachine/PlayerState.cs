@@ -18,15 +18,20 @@ public abstract class PlayerState
     public virtual void EnterState() {} 
     public virtual void ExitState() {}
     public virtual void UpdateState() {}
-    
     public virtual void CheckSwitchState() {}
 
-    protected void SwitchState(PlayerState newstate)
+    protected void SwitchState(PlayerState newState)
     {
         //switches between states ... duh
         ExitState();
-        newstate.EnterState();
-        
-        player.CurrentState = newstate;
+        newState.EnterState();
+
+        player.CurrentState = newState;
+    }
+    public void OverrideState(PlayerState newState)
+    {
+        //only call this function when a direct override of the current state is required. 
+        //in this context for entering the swap state only!
+        SwitchState(newState);
     }
 }

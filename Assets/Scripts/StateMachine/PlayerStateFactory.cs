@@ -1,29 +1,37 @@
+using System.Collections.Generic;
+
 public class PlayerStateFactory
 {
     private TestPlayerController player;
-
+    Dictionary<string, PlayerState> states = new Dictionary<string, PlayerState>();
+    
     public PlayerStateFactory(TestPlayerController player)
     {
         this.player = player;
+        states["idle"] = new PlayerIdleState(player, this);
+        states["walk"] = new PlayerWalkState(player, this);
+        states["run"] = new PlayerRunState(player, this);
+        states["jump"] = new PlayerJumpState(player, this);
+        states["swap"] = new PlayerSwapState(player, this);
     }
     public PlayerState Idle()
     {
-        return new PlayerIdleState(player, this);
+        return states["idle"];
     }
     public PlayerState Walk()
     {
-        return new PlayerWalkState(player, this);
+        return states["walk"];
     }
     public PlayerState Run()
     {
-        return new PlayerRunState(player, this); 
+        return states["run"];
     }
     public PlayerState Jump()
     {
-        return new PlayerJumpState(player, this);
+        return states["jump"];
     }
     public PlayerState Swap()
     {
-        return new PlayerSwapState(player, this);
+        return states["swap"];
     }
 }
