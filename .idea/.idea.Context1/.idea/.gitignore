@@ -1,13 +1,15 @@
-# Default ignored files
+﻿# Default ignored files
 /shelf/
 /workspace.xml
 # Rider ignored files
+/.idea.Context1.iml
+/contentModel.xml
 /projectSettingsUpdater.xml
 /modules.xml
-/contentModel.xml
-/.idea.Context1.iml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# GitHub Copilot persisted chat sessions
+/copilot/chatSessions
