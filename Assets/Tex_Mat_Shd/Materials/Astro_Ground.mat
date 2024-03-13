@@ -38,12 +38,13 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _addVal: 2.6
-    - _divideVal: 1.08
+    - _Overlay_Strength: 0
+    - _addVal: 3.49
+    - _divideVal: 0.31
     m_Colors:
-    - _BaseColor: {r: 0.2819625, g: 1, b: 0, a: 1}
+    - _BaseColor: {r: 0, g: 0.807, b: 0.42040747, a: 0}
     - _Color: {r: 0.48235297, g: 0.7019608, b: 0.53333336, a: 1}
-    - _Overlay_Color: {r: 0.48235297, g: 0.7019608, b: 0.53333336, a: 0}
+    - _Overlay_Color: {r: 0.011764707, g: 0.23529413, b: 0.21960786, a: 0}
     - _Shadow_Tone: {r: 0, g: 0.59048676, b: 1, a: 1}
-    - _outMap: {r: -0.33, g: -2.52, b: 0, a: 0}
+    - _outMap: {r: 1, g: -2.9, b: 0, a: 0}
   m_BuildTextureStacks: []

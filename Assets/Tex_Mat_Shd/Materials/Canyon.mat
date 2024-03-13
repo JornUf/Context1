@@ -60,7 +60,7 @@ Material:
     - _addVal: -1.31
     - _divideVal: 0.48
     m_Colors:
-    - _BaseColor: {r: 1, g: 0, b: 0.70038223, a: 0}
+    - _BaseColor: {r: 0, g: 0.307, b: 0.26606673, a: 0}
     - _Bottom_Color: {r: 0, g: 0.16165884, b: 0.273, a: 0}
     - _Depth_Remap: {r: 0, g: 0, b: 0, a: 0}
     - _Depths: {r: 0, g: 0, b: 0, a: 0}
