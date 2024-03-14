@@ -58,6 +58,17 @@ public class SwapStatsPlayer : SwapStats
         floatList.Add(DoubleJumpHeight);
     }
 
+    public void resetvalues()
+    {
+        WalkSpeed.Value = startWalkSpeed;
+        RunSpeed.Value = startRunSpeed;
+        JumpSpeed.Value = startJumpSpeed;
+        GravitySpeed.Value = startGravitySpeed;
+        DoubleJumpAmount.Value = startAmountofDoubleJumps;
+        DoubleJumpHeight.Value = startDoubleJumpHeight;
+
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -11,6 +11,8 @@ public class Timer : MonoBehaviour
 
     private bool timerOn = false;
 
+    public float besttime = 0;
+
     [SerializeField] private TextMeshProUGUI timerText;
     
     void Update()
@@ -40,6 +42,10 @@ public class Timer : MonoBehaviour
 
     public void StopTimer()
     {
+        if (besttime == 0 || besttime > seconds + minutes * 60)
+        {
+            besttime = seconds + minutes * 60;
+        }
         timerOn = false;
     }
 }
