@@ -86,7 +86,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
-    - _Cast_Shadow_Displace: -0.5
+    - _Cast_Shadow_Displace: -0.812
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -128,7 +128,7 @@ Material:
     - _Overlay_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Self_Shadow_Tone: {r: 0, g: 0.59048676, b: 1, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _Top_Color: {r: 0.88882303, g: 0.38099998, b: 1, a: 1}
+    - _Top_Color: {r: 0.003921569, g: 0.25882354, b: 0.25882354, a: 1}
     - _outMap: {r: 1.74, g: 1, b: 0, a: 0}
     - _outMapCast: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
