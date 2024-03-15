@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!returntomenu)
         {
+            _statsPlayer.roundDone();
             transform.position = respawnPoint.position;
             transform.rotation = respawnPoint.rotation;
             StartSwapStuff();

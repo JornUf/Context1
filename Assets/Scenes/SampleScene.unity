@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.629527, z: -4.957287}
+  m_FollowOffset: {x: 0, y: -0.9390593, z: -5.124172}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1608,7 +1608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.629527, z: -4.957287}
+  m_FollowOffset: {x: 0, y: -0.9390593, z: -5.124172}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1965,6 +1965,11 @@ MonoBehaviour:
   startGravitySpeed: 20
   startAmountofDoubleJumps: 1
   startDoubleJumpHeight: 7.5
+  startDoubler: 1
+  startSquare: 1
+  startHalf: 1
+  startRNGMin: 0
+  startRNGMax: 10
   WalkSpeed: {fileID: 0}
   RunSpeed: {fileID: 0}
   JumpSpeed: {fileID: 0}
@@ -3961,7 +3966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.629527, z: -4.957287}
+  m_FollowOffset: {x: 0, y: -0.9390593, z: -5.124172}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
