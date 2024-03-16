@@ -9,31 +9,32 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private SwapStatsPlayer _statsPlayer;
     [SerializeField] private Transform respawnPoint;
-    public Camera playerCamera;
-    public float lookSpeed = 2.0f;
-    public float lookXLimit = 45.0f;
-
+    [SerializeField] private Transform camtransform;
+    [SerializeField] private MainMenuManager mainmenu;
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
     
-    [HideInInspector]
     public bool canMove = false;
+
+    public bool returntomenu = false;
+
+    private float amountOfDoubleJumpsDone = 0;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
 
         // Lock cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     void Update()
     {
         // We are grounded, so recalculate move direction based on axes
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        Vector3 forward = camtransform.forward;
+        Vector3 right = camtransform.right;
         // Press Left Shift to run
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         float curSpeedX = canMove ? (isRunning ? _statsPlayer.RunSpeed.Value : _statsPlayer.WalkSpeed.Value) * Input.GetAxis("Vertical") : 0;
@@ -41,9 +42,14 @@ public class PlayerController : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (Input.GetButtonUp("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = _statsPlayer.JumpSpeed.Value;
+        }
+        else if(Input.GetButtonUp("Jump") && canMove && amountOfDoubleJumpsDone < _statsPlayer.DoubleJumpAmount.Value)
+        {
+            moveDirection.y = _statsPlayer.DoubleJumpHeight.Value;
+            amountOfDoubleJumpsDone += 1;
         }
         else
         {
@@ -57,32 +63,46 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection.y -= _statsPlayer.GravitySpeed.Value * Time.deltaTime;
         }
+        else
+        {
+            amountOfDoubleJumpsDone = 0;
+        }
 
-        // Player and Camera rotation
+        // Player
         if (canMove)
         {    // Move the controller
             characterController.Move(moveDirection * Time.deltaTime);
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            if(Mathf.Abs(curSpeedX) > 0 || Mathf.Abs(curSpeedY) > 0)
+                transform.forward = new Vector3(moveDirection.x, 0, moveDirection.z);
         }
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        //reset button
+        if (canMove && Input.GetKeyUp(KeyCode.R))
         {
-            StartSwapStuff();
+            //DieOrWin();
         }
 
-        if (!canMove && Input.GetKeyUp(KeyCode.E))
+        if (transform.position.y <= -10)
         {
-            backtogame();
+            DieOrWin();
         }
+    }
 
-        if (transform.position.y <= -5)
+    public void DieOrWin()
+    {
+        if (!returntomenu)
         {
+            _statsPlayer.roundDone();
             transform.position = respawnPoint.position;
             transform.rotation = respawnPoint.rotation;
             StartSwapStuff();
+        }
+        else
+        {
+            transform.position = respawnPoint.position;
+            transform.rotation = respawnPoint.rotation;
+            _statsPlayer.resetvalues();
+            mainmenu.exitGame();
         }
     }
 
@@ -99,5 +119,10 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         _statsPlayer.enableSwapMode();
+    }
+
+    public void resetplayer()
+    {
+        
     }
 }
