@@ -557,6 +557,8 @@ GameObject:
   - component: {fileID: 290995517}
   - component: {fileID: 290995516}
   - component: {fileID: 290995515}
+  - component: {fileID: 290995520}
+  - component: {fileID: 290995519}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -650,6 +652,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &290995519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290995514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9ef9e309f6a9f47a78d5521a76b485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotDisplacement: {x: 18.28, y: 4.16, z: 0}
+  rotationSpeed: 50
+--- !u!114 &290995520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290995514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78750b44d445d6543b1a4b2932c5430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerType: 1
+  delay: 2
+  runOnce: 0
 --- !u!1 &325048307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,6 +2595,8 @@ GameObject:
   - component: {fileID: 1154971281}
   - component: {fileID: 1154971280}
   - component: {fileID: 1154971279}
+  - component: {fileID: 1154971284}
+  - component: {fileID: 1154971283}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2654,6 +2690,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1154971283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154971278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ecd952b5a5f0b64db49ed4d26ed03a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {x: -0.88, y: 2.33, z: 2.84}
+  - {x: -15.76, y: -9.78, z: 17.08}
+  - {x: -21.5, y: -1.42, z: 68.1}
+  basicTargetPoint: {fileID: 539597246}
+  speed: 5
+--- !u!114 &1154971284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154971278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78750b44d445d6543b1a4b2932c5430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerType: 2
+  delay: 2
+  runOnce: 1
 --- !u!1 &1171164147
 GameObject:
   m_ObjectHideFlags: 0
