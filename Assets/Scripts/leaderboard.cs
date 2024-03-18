@@ -11,12 +11,27 @@ public class leaderboard : MonoBehaviour
     [SerializeField] private Transform entryContainer;
     [SerializeField] private Transform entryTemplate;
     [SerializeField] private TextMeshPro ingameboard;
+    [SerializeField] private GameObject _leaderboard;
     private List<HighscoreEntry> _highscoreEntries;
     private List<Transform> _transforms = new List<Transform>();
     private string jsonname = "highscoreTable";
     private void Awake()
     {
         entryTemplate.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetString(jsonname) == null)
+        {
+            Highscores highscores = new Highscores();
+
+            string json = JsonUtility.ToJson(highscores);
+            PlayerPrefs.SetString(jsonname, json);
+            PlayerPrefs.Save();
+        }
+
+        _leaderboard.SetActive(false);
     }
 
     private void Update()
@@ -184,7 +199,7 @@ public class leaderboard : MonoBehaviour
 
     public class Highscores
     {
-        public List<HighscoreEntry> HighscoreEntries;
+        public List<HighscoreEntry> HighscoreEntries = new List<HighscoreEntry>();
     }
 
     [System.Serializable]

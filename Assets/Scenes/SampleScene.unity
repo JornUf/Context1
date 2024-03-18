@@ -1379,7 +1379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &232631393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1650,7 +1650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3.367934, z: -6.120484}
+  m_FollowOffset: {x: 0, y: 1.219667, z: -7.213854}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1977,7 +1977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3.367934, z: -6.120484}
+  m_FollowOffset: {x: 0, y: 1.219667, z: -7.213854}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4873,6 +4873,7 @@ MonoBehaviour:
   entryContainer: {fileID: 1769242729}
   entryTemplate: {fileID: 711936809}
   ingameboard: {fileID: 1165225877}
+  _leaderboard: {fileID: 232631392}
 --- !u!1 &711936808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5078,7 +5079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3.367934, z: -6.120484}
+  m_FollowOffset: {x: 0, y: 1.219667, z: -7.213854}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1

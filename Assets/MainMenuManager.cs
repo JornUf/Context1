@@ -41,6 +41,10 @@ public class MainMenuManager : MonoBehaviour
     {
         _leaderboard.stopInGameBoard();
         float time = timer.GetComponent<Timer>().besttime;
+        if (time == 0)
+        {
+            time = 600;
+        }
         _leaderboard.AddHighScoreEntry(time, name);
         timer.GetComponent<Timer>().besttime = 0;
         timer.GetComponent<Timer>().QuitedGame();
