@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Astro_Black
-  m_Shader: {fileID: -6465566751694194690, guid: 5204a5914d8817540b520b1b83445b47, type: 3}
-  m_Parent: {fileID: 2100000, guid: 931c38b495f85a14ab2bc0a26b0bb150, type: 2}
+  m_Name: Smoke
+  m_Shader: {fileID: -6465566751694194690, guid: 9c63891d2901659488e7084b5d0818b2, type: 3}
+  m_Parent: {fileID: 2100000, guid: 2186fe47a5c323142a6654bc91afdbc2, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -25,12 +25,15 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Overlay_Strength: 0.604
+    - _Height: 75.8
+    - _Object_Space_Gradient: 0
+    - _Overlay_Strength: 1
+    - _Smoothness: 100
     m_Colors:
-    - _BaseColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Bottom_Color: {r: 0.19215688, g: 0.19215688, b: 0.19215688, a: 1}
+    - _Top_Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &1705321364464005357
+--- !u!114 &7948913992705851575
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
