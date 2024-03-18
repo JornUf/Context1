@@ -27,7 +27,7 @@ Material:
     m_Floats:
     - _Overlay_Strength: 0.604
     m_Colors:
-    - _BaseColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+    - _BaseColor: {r: 0.3132075, g: 0.3132075, b: 0.3132075, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1705321364464005357

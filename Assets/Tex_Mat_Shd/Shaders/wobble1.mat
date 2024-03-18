@@ -37,20 +37,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha_Gradient_Height: 0
-    - _Alpha_Smoothness: 0
-    - _Bottom_Alpha: 1
     - _Cast_Shadow_Displace: -0.812
     - _Height: 0.86
     - _Midlevel: 0
     - _Minimum_Value: 0
-    - _Object_Space_Alpha_Gradient: 0
     - _Object_Space_Gradient: 0
     - _Overlay_Strength: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 6.87
-    - _Top_Alpha: 1
     - _Wobble_Power: 0.01
     - _Wobble_Speed: 1
     - _addVal: -1.31
