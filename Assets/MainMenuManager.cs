@@ -27,6 +27,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (_inputField.text != "")
         {
+            _leaderboard.InGameBoard();
             gameStarted = true;
             name = _inputField.text;
             timer.SetActive(true);
@@ -38,10 +39,12 @@ public class MainMenuManager : MonoBehaviour
 
     public void exitGame()
     {
+        _leaderboard.stopInGameBoard();
         float time = timer.GetComponent<Timer>().besttime;
         _leaderboard.AddHighScoreEntry(time, name);
-        backToMenu();
         timer.GetComponent<Timer>().besttime = 0;
+        timer.GetComponent<Timer>().QuitedGame();
+        backToMenu();
     }
 
     public void backToMenu()

@@ -10,6 +10,7 @@ public class leaderboard : MonoBehaviour
 {
     [SerializeField] private Transform entryContainer;
     [SerializeField] private Transform entryTemplate;
+    [SerializeField] private TextMeshPro ingameboard;
     private List<HighscoreEntry> _highscoreEntries;
     private List<Transform> _transforms = new List<Transform>();
     private string jsonname = "highscoreTable";
@@ -128,6 +129,57 @@ public class leaderboard : MonoBehaviour
             //should probally delete instead of disabling but idk
             trans.gameObject.SetActive(false);
         }
+    }
+
+    public void InGameBoard()
+    {
+        string jsonstring = PlayerPrefs.GetString(jsonname);
+        
+        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonstring);
+        
+        for(int i = 0; i < highscores.HighscoreEntries.Count; i++)
+        {
+            for (int j = i + 1; j < highscores.HighscoreEntries.Count; j++)
+            {
+                if (highscores.HighscoreEntries[j].time < highscores.HighscoreEntries[i].time)
+                {
+                    HighscoreEntry tmp = highscores.HighscoreEntries[i];
+                    highscores.HighscoreEntries[i] = highscores.HighscoreEntries[j];
+                    highscores.HighscoreEntries[j] = tmp;
+                }
+            }
+        }
+
+        int ingamect = 0;
+        foreach (HighscoreEntry entry in highscores.HighscoreEntries)
+        {
+            if (ingamect < 6)
+            {
+                CreateScoreInGame(entry);
+                ingamect++;
+            }
+        }
+    }
+    
+    public void CreateScoreInGame(HighscoreEntry highscoreEntry)
+    {
+        ingameboard.text += "\n";
+        
+        int time = (int)highscoreEntry.time;
+        int seconds = time % 60;
+        int minutes = (time - seconds) / 60;
+        if(seconds >= 10)
+            ingameboard.text += minutes.ToString() + ":" + seconds;
+        else 
+            ingameboard.text += minutes.ToString() + ":0" + seconds;
+        
+        string name = highscoreEntry.name;
+        ingameboard.text += " " + name;
+    }
+
+    public void stopInGameBoard()
+    {
+        ingameboard.text = "";
     }
 
     public class Highscores

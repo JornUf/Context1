@@ -38,6 +38,15 @@ public class Timer : MonoBehaviour
         timerOn = true;
         seconds = 0;
         minutes = 0;
+        timerText.text = 00 + ":" + 00;
+
+    }
+
+    public void QuitedGame()
+    {
+        timerOn = false;
+        seconds = 0;
+        minutes = 0;
     }
 
     public void StopTimer()
