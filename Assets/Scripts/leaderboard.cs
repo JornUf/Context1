@@ -22,13 +22,14 @@ public class leaderboard : MonoBehaviour
 
     private void Start()
     {
+        if (!PlayerPrefs.HasKey(jsonname))
+        {
+            Highscores highscores = new Highscores();
 
-        Highscores highscores = new Highscores();
-
-        string json = JsonUtility.ToJson(highscores);
-        PlayerPrefs.SetString(jsonname, json);
-        PlayerPrefs.Save();
-
+            string json = JsonUtility.ToJson(highscores);
+            PlayerPrefs.SetString(jsonname, json);
+            PlayerPrefs.Save();
+        }
 
         _leaderboard.SetActive(false);
     }
