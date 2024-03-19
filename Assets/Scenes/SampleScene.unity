@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerController: {fileID: 327291973}
+  _volume: {fileID: 1218804555}
   menucam: {fileID: 683781764}
   mainmenu: {fileID: 426560624}
   leaderboardmenu: {fileID: 232631392}
@@ -1525,7 +1526,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 12
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1677,7 +1678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.219667, z: -7.213854}
+  m_FollowOffset: {x: 0, y: 7.669932, z: -1.492562}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2004,7 +2005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.219667, z: -7.213854}
+  m_FollowOffset: {x: 0, y: 7.669932, z: -1.492562}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5364,7 +5365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.219667, z: -7.213854}
+  m_FollowOffset: {x: 0, y: 7.669932, z: -1.492562}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -7623,7 +7624,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4294366772
   m_fontColor: {r: 0.20392159, g: 0.83921576, b: 0.96470594, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
