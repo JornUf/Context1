@@ -26,7 +26,12 @@ public class PlayerJumpState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
-        //add double jump logic here
+        Vector3 moveDirection = player.CurrentMoveDirection;
+        float speed = player.StatsPlayer.WalkSpeed.Value * 0.8f;
+        moveDirection.x = player.CurrentMovementInput.x * speed;
+        moveDirection.z = player.CurrentMovementInput.y * speed;
+
+        player.CurrentMoveDirection = moveDirection;
     }
     
     public override void CheckSwitchState()
