@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MainMenuManager : MonoBehaviour
 {
     public PlayerController _playerController;
 
+    [SerializeField] private Volume _volume;
     [SerializeField] private CinemachineVirtualCamera menucam;
     [SerializeField] private GameObject mainmenu;
     [SerializeField] private GameObject leaderboardmenu;
@@ -27,6 +29,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (_inputField.text != "")
         {
+            _volume.enabled = false;
             _leaderboard.InGameBoard();
             gameStarted = true;
             name = _inputField.text;
@@ -39,6 +42,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void exitGame()
     {
+        _volume.enabled = true;
         _leaderboard.stopInGameBoard();
         float time = timer.GetComponent<Timer>().besttime;
         if (time == 0)
