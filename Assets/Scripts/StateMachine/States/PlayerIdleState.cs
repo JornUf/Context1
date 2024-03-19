@@ -14,6 +14,7 @@ public class PlayerIdleState : PlayerState
         moveDirection.x = 0;
         moveDirection.z = 0;
         player.CurrentMoveDirection = moveDirection;
+        player.Animator.SetBool("Idle", true);
     }
 
     public override void ExitState()

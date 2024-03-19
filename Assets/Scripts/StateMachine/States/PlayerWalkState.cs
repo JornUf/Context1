@@ -11,11 +11,13 @@ public class PlayerWalkState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
+        player.Animator.SetBool("Walk", true);
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        player.Animator.SetBool("Walk", false);
     }
 
     public override void UpdateState()

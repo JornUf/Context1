@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class TestPlayerController : MonoBehaviour
 {
+
+    [SerializeField] private Animator animator;
     
     [SerializeField] private SwapStatsPlayer statsPlayer;
     [SerializeField] private Transform respawnPoint;
@@ -39,6 +42,7 @@ public class TestPlayerController : MonoBehaviour
     //getters + setters 
     public PlayerState CurrentState { get { return currentState;} set { currentState = value; } }
     public CharacterController CharacterController { get { return characterController; } }
+    public Animator Animator { get { return animator; } }
     public SwapStatsPlayer StatsPlayer { get { return statsPlayer; } }
     public Vector2 CurrentMovementInput { get { return currentMovementInput; } }
     public Vector3 CurrentMoveDirection { get { return currentMoveDirection; } set { currentMoveDirection = value; } }
