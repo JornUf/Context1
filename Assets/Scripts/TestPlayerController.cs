@@ -20,6 +20,7 @@ public class TestPlayerController : MonoBehaviour
 
     private Vector2 currentMovementInput;
     private Vector3 currentMoveDirection = Vector3.zero;
+    private Vector3 exteralMoveDirection = Vector3.zero;
     
     //camera rotation vars
     private float rotationX = 0;
@@ -46,6 +47,7 @@ public class TestPlayerController : MonoBehaviour
     public SwapStatsPlayer StatsPlayer { get { return statsPlayer; } }
     public Vector2 CurrentMovementInput { get { return currentMovementInput; } }
     public Vector3 CurrentMoveDirection { get { return currentMoveDirection; } set { currentMoveDirection = value; } }
+    public Vector3 ExternalMoveDirection { get { return exteralMoveDirection; } set { exteralMoveDirection = value; } }
     public bool IsGrounded { get { return characterController.isGrounded; } }
     public bool IsMovePressed { get { return isMovePressed; } }
     public bool IsRunPressed { get { return isRunPressed; } }
@@ -114,8 +116,10 @@ public class TestPlayerController : MonoBehaviour
         //updates active state
         currentState.CheckSwitchState();
         currentState.UpdateState();
-
-        characterController.Move(currentMoveDirection * Time.deltaTime);
+        
+        //moves the player
+        Vector3 externalMove = exteralMoveDirection * Time.deltaTime;
+        characterController.Move(currentMoveDirection * Time.deltaTime + -1 * externalMove);
         
         HandleGravity();
     }
@@ -133,6 +137,10 @@ public class TestPlayerController : MonoBehaviour
         if (!characterController.isGrounded)
         {
             currentMoveDirection.y -= statsPlayer.GravitySpeed.Value * Time.deltaTime;
+        }
+        else
+        {
+            currentMoveDirection.y = -0.05f;
         }
     }
 
