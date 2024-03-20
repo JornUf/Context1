@@ -99,13 +99,23 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAnimation()
     {
-        if (moveDirection.x != 0 || moveDirection.z != 0)
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             animator.SetBool("Moving", true);
             animator.SetBool("Idle", false);
-            
-            animator.SetFloat("X Velocity", moveDirection.x);
-            animator.SetFloat("Z Velocity", moveDirection.z);
+
+
+            var runMultiply = (isRunning ? 2 : 1);
+
+         
+
+            var oldXVel = animator.GetFloat("X Velocity");
+            var oldZVel = animator.GetFloat("Z Velocity");
+
+            animator.SetFloat("X Velocity", Mathf.Lerp(Input.GetAxis("Horizontal") * runMultiply, oldXVel, 8 * Time.deltaTime));
+            animator.SetFloat("Z Velocity", Mathf.Lerp(Input.GetAxis("Vertical") * runMultiply, oldZVel, 8 * Time.deltaTime));
         }
         else
         {
