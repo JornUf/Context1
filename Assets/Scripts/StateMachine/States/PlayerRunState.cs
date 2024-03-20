@@ -12,11 +12,13 @@ public class PlayerRunState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
+        player.Animator.SetBool("Moving", true);
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        player.Animator.SetBool("Moving", false);
     }
 
     public override void UpdateState()
@@ -25,6 +27,10 @@ public class PlayerRunState : PlayerState
         float speed = player.StatsPlayer.RunSpeed.Value;
         moveDirection.x = player.CurrentMovementInput.x * speed;
         moveDirection.z = player.CurrentMovementInput.y * speed;
+
+        player.Animator.SetFloat("X Velocity", Mathf.Lerp(player.Animator.GetFloat("X Velocity"), player.CurrentMovementInput.x * 2, 8 * Time.deltaTime));
+        player.Animator.SetFloat("Z Velocity", Mathf.Lerp(player.Animator.GetFloat("Z Velocity"), player.CurrentMovementInput.y * 2, 8 * Time.deltaTime));
+        player.Animator.SetFloat("Magnitude", moveDirection.magnitude);
 
         player.CurrentMoveDirection = moveDirection;
     }

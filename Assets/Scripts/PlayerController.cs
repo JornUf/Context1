@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
             characterController.Move(moveDirection * Time.deltaTime);
             if(Mathf.Abs(curSpeedX) > 0 || Mathf.Abs(curSpeedY) > 0)
                 transform.forward = new Vector3(moveDirection.x, 0, moveDirection.z);
+
         }
 
         //reset button
