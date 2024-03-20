@@ -19,6 +19,8 @@ public class TestPlayerController : MonoBehaviour
     private Vector3 currentMoveDirection = Vector3.zero;
     private Vector3 exteralMoveDirection = Vector3.zero;
     
+    private Vector3 rotatedMoveDirection = Vector3.zero;
+    
     //camera rotation vars
     private float rotationX = 0;
     [Header("Camera Rotation")]
@@ -125,7 +127,14 @@ public class TestPlayerController : MonoBehaviour
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0); 
+
+        /*if (currentMoveDirection.magnitude >= 0.1f)
+        {
+            float angle = Mathf.Atan2(currentMoveDirection.x, currentMoveDirection.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+            rotatedMoveDirection = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+        } */
     }
 
     private void HandleGravity()
