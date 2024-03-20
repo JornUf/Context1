@@ -2466,7 +2466,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327291972}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42624c83d5c31e74b9cbc15d0a793214, type: 3}
   m_Name: 
@@ -2636,19 +2636,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327291972}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910ad976efe0d314db490c57e9427433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1729055624544907062}
-  vcam: {fileID: 963194227}
   statsPlayer: {fileID: 327291974}
   respawnPoint: {fileID: 196509832}
-  playerCamera: {fileID: 963194227}
+  playerCamera: {fileID: 963194228}
   lookSpeed: 2
   lookXLimit: 45
-  speedFix: 4
 --- !u!1001 &334115654
 PrefabInstance:
   m_ObjectHideFlags: 0

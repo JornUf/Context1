@@ -1,8 +1,10 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -13,7 +15,7 @@ public class TestPlayerController : MonoBehaviour
     
     [SerializeField] private SwapStatsPlayer statsPlayer;
     [SerializeField] private Transform respawnPoint;
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform playerCamera;
 
     private CharacterController characterController;
     private PlayerInput playerInput;
@@ -87,6 +89,7 @@ public class TestPlayerController : MonoBehaviour
     {
         currentMovementInput = context.ReadValue<Vector2>();
         isMovePressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
+        
     }
     
     private void OnSprintInput(InputAction.CallbackContext context)
@@ -111,25 +114,35 @@ public class TestPlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleRotation();
-        
+       HandleRotation();
+
+        currentMovementInput = (currentMovementInput.x * new Vector2(transform.forward.x, transform.forward.z) +
+            currentMovementInput.y * new Vector2(transform.forward.x, transform.forward.z));
+
         //updates active state
         currentState.CheckSwitchState();
         currentState.UpdateState();
         
         //moves the player
         Vector3 externalMove = exteralMoveDirection * Time.deltaTime;
-        characterController.Move(currentMoveDirection * Time.deltaTime + -1 * externalMove);
+
+        characterController.Move((currentMoveDirection) * Time.deltaTime + -1 * externalMove);
         
         HandleGravity();
     }
     
     private void HandleRotation()
     {
-        rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+      /*  if (currentMoveDirection.magnitude >= 0.1f)
+        {
+            float angle = Mathf.Atan2(currentMoveDirection.x, currentMoveDirection.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+        }*/
+        
+        //camera based
+        transform.forward = new Vector3(playerCamera.forward.x, 0, playerCamera.forward.z);
+
+        //transform.rotation = Quaternion.Euler(transform.rotation.x, playerCamera.transform.rotation.y * 180f, transform.rotation.z);
     }
 
     private void HandleGravity()

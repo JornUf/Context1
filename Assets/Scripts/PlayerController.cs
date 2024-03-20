@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = camtransform.forward;
         Vector3 right = camtransform.right;
+
         // Press Left Shift to run
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         float curSpeedX = canMove ? (isRunning ? _statsPlayer.RunSpeed.Value : _statsPlayer.WalkSpeed.Value) * Input.GetAxis("Vertical") : 0;
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
         {    // Move the controller
             characterController.Move(moveDirection * Time.deltaTime);
             if(Mathf.Abs(curSpeedX) > 0 || Mathf.Abs(curSpeedY) > 0)
-                transform.forward = new Vector3(moveDirection.x, 0, moveDirection.z);
+                transform.forward = new Vector3(camtransform.forward.x, 0, camtransform.forward.z);
 
         }
 
