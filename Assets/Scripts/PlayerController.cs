@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private Transform camtransform;
     [SerializeField] private MainMenuManager mainmenu;
+    [SerializeField] private Animator animator; 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = _statsPlayer.JumpSpeed.Value;
+            animator.SetTrigger("Jump");
         }
         else if(Input.GetButtonUp("Jump") && canMove && amountOfDoubleJumpsDone < _statsPlayer.DoubleJumpAmount.Value)
         {
@@ -63,10 +65,13 @@ public class PlayerController : MonoBehaviour
         if (!characterController.isGrounded)
         {
             moveDirection.y -= _statsPlayer.GravitySpeed.Value * Time.deltaTime;
+            animator.SetBool("Jumping", true);
         }
         else
         {
             amountOfDoubleJumpsDone = 0;
+            
+            animator.SetBool("Jumping", false);
         }
 
         // Player
@@ -88,6 +93,36 @@ public class PlayerController : MonoBehaviour
         {
             DieOrWin();
         }
+        
+        HandleAnimation();
+    }
+
+    private void HandleAnimation()
+    {
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            animator.SetBool("Moving", true);
+            animator.SetBool("Idle", false);
+
+
+            var runMultiply = (isRunning ? 2 : 1);
+
+         
+
+            var oldXVel = animator.GetFloat("X Velocity");
+            var oldZVel = animator.GetFloat("Z Velocity");
+
+            animator.SetFloat("X Velocity", Mathf.Lerp(Input.GetAxis("Horizontal") * runMultiply, oldXVel, 8 * Time.deltaTime));
+            animator.SetFloat("Z Velocity", Mathf.Lerp(Input.GetAxis("Vertical") * runMultiply, oldZVel, 8 * Time.deltaTime));
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+            animator.SetBool("Idle", true);
+        }
+        
     }
 
     public void DieOrWin()

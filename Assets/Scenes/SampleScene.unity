@@ -2637,6 +2637,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 196509832}
   camtransform: {fileID: 963194228}
   mainmenu: {fileID: 63495400}
+  animator: {fileID: 1729055624544907062}
   canMove: 0
   returntomenu: 0
 --- !u!114 &327291974
