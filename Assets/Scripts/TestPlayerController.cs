@@ -125,7 +125,7 @@ public class TestPlayerController : MonoBehaviour
         
         //moves the player
         Vector3 externalMove = exteralMoveDirection * Time.deltaTime;
-
+ 
         characterController.Move((currentMoveDirection) * Time.deltaTime + -1 * externalMove);
         
         HandleGravity();
