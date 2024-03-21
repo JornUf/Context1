@@ -42,12 +42,13 @@ public class PlatformTrigger : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void OnPlatformEnter()
     {
-        if (other.gameObject.name == "Player" && triggerType == TriggerType.OnCollision && onTrigger != null && !hasActived) //maybe add collision layer? 
+        if (!hasActived && triggerType == TriggerType.OnCollision && onTrigger != null)
         {
             onTrigger.Invoke();
             hasActived = true; 
+            Debug.Log("he movin'");
         }
     }
 }

@@ -14,6 +14,7 @@ public class PlayerIdleState : PlayerState
         moveDirection.x = 0;
         moveDirection.z = 0;
         player.CurrentMoveDirection = moveDirection;
+        
     }
 
     public override void ExitState()
@@ -24,6 +25,9 @@ public class PlayerIdleState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
+
+        player.Animator.SetFloat("X Velocity", 0f);
+        player.Animator.SetFloat("Z Velocity", 0f);
     }
     
     public override void CheckSwitchState()

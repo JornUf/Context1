@@ -16,10 +16,12 @@ public class PlayerJumpState : PlayerState
         moveDirection = player.CurrentMoveDirection;
         
         Jump(player.StatsPlayer.JumpSpeed.Value);
+        player.Animator.SetBool("Jumping", true);
     }
 
     public override void ExitState()
     {
+        player.Animator.SetBool("Jumping", false);
         base.ExitState();
     }
 
@@ -38,6 +40,7 @@ public class PlayerJumpState : PlayerState
     {
         if (player.IsGrounded)
         {
+            player.Animator.SetTrigger("Landing");
             SwitchState(factory.Idle());
         } 
     }

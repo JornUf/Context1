@@ -11,8 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private Transform camtransform;
     [SerializeField] private MainMenuManager mainmenu;
+    [SerializeField] private Animator animator; 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
+    Vector3 externalMoveDirection = Vector3.zero;
     float rotationX = 0;
     
     public bool canMove = false;
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public bool returntomenu = false;
 
     private float amountOfDoubleJumpsDone = 0;
+    
+    public Vector3 ExternalMoveDirection { get { return externalMoveDirection; } set { externalMoveDirection = value; } }
 
     void Start()
     {
@@ -35,6 +39,7 @@ public class PlayerController : MonoBehaviour
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = camtransform.forward;
         Vector3 right = camtransform.right;
+
         // Press Left Shift to run
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         float curSpeedX = canMove ? (isRunning ? _statsPlayer.RunSpeed.Value : _statsPlayer.WalkSpeed.Value) * Input.GetAxis("Vertical") : 0;
@@ -45,6 +50,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = _statsPlayer.JumpSpeed.Value;
+            animator.SetTrigger("Jump");
         }
         else if(Input.GetButtonUp("Jump") && canMove && amountOfDoubleJumpsDone < _statsPlayer.DoubleJumpAmount.Value)
         {
@@ -62,18 +68,23 @@ public class PlayerController : MonoBehaviour
         if (!characterController.isGrounded)
         {
             moveDirection.y -= _statsPlayer.GravitySpeed.Value * Time.deltaTime;
+            animator.SetBool("Jumping", true);
         }
         else
         {
             amountOfDoubleJumpsDone = 0;
+            
+            animator.SetBool("Jumping", false);
         }
 
         // Player
         if (canMove)
         {    // Move the controller
-            characterController.Move(moveDirection * Time.deltaTime);
+            Vector3 externalMove = externalMoveDirection * Time.deltaTime;
+            characterController.Move(moveDirection * Time.deltaTime + -1 * externalMove);
             if(Mathf.Abs(curSpeedX) > 0 || Mathf.Abs(curSpeedY) > 0)
-                transform.forward = new Vector3(moveDirection.x, 0, moveDirection.z);
+                transform.forward = new Vector3(camtransform.forward.x, 0, camtransform.forward.z);
+
         }
 
         //reset button
@@ -86,6 +97,36 @@ public class PlayerController : MonoBehaviour
         {
             DieOrWin();
         }
+        
+        HandleAnimation();
+    }
+
+    private void HandleAnimation()
+    {
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            animator.SetBool("Moving", true);
+            animator.SetBool("Idle", false);
+
+
+            var runMultiply = (isRunning ? 2 : 1);
+
+         
+
+            var oldXVel = animator.GetFloat("X Velocity");
+            var oldZVel = animator.GetFloat("Z Velocity");
+
+            animator.SetFloat("X Velocity", Mathf.Lerp(Input.GetAxis("Horizontal") * runMultiply, oldXVel, 8 * Time.deltaTime));
+            animator.SetFloat("Z Velocity", Mathf.Lerp(Input.GetAxis("Vertical") * runMultiply, oldZVel, 8 * Time.deltaTime));
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+            animator.SetBool("Idle", true);
+        }
+        
     }
 
     public void DieOrWin()
