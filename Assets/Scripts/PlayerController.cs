@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator; 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
+    Vector3 externalMoveDirection = Vector3.zero;
     float rotationX = 0;
     
     public bool canMove = false;
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public bool returntomenu = false;
 
     private float amountOfDoubleJumpsDone = 0;
+    
+    public Vector3 ExternalMoveDirection { get { return externalMoveDirection; } set { externalMoveDirection = value; } }
 
     void Start()
     {
@@ -77,7 +80,8 @@ public class PlayerController : MonoBehaviour
         // Player
         if (canMove)
         {    // Move the controller
-            characterController.Move(moveDirection * Time.deltaTime);
+            Vector3 externalMove = externalMoveDirection * Time.deltaTime;
+            characterController.Move(moveDirection * Time.deltaTime + -1 * externalMove);
             if(Mathf.Abs(curSpeedX) > 0 || Mathf.Abs(curSpeedY) > 0)
                 transform.forward = new Vector3(camtransform.forward.x, 0, camtransform.forward.z);
 

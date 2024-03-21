@@ -75,7 +75,14 @@ public class Depth : MonoBehaviour
     
     public void SetDirection()
     {
-        velocity.direction = moveDirection * currentDirection * speed;
+        if (!isRunning)
+        {
+            velocity.direction = Vector3.zero;
+        }
+        else
+        {
+            velocity.direction = moveDirection * currentDirection * speed;
+        }
     }
 
     private void OnDrawGizmosSelected()
