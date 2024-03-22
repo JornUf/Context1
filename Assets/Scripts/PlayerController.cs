@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         //reset button
         if (canMove && Input.GetKeyUp(KeyCode.R))
         {
-            //DieOrWin();
+            DieOrWin();
         }
 
         if (transform.position.y <= -10)
