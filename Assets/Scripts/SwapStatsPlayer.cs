@@ -48,12 +48,12 @@ public class SwapStatsPlayer : SwapStats
         floatList.Add(RunSpeed);
         
         JumpSpeed = ScriptableObject.CreateInstance<FloatRef>();
-        JumpSpeed.Name = "JumpSpeed";
+        JumpSpeed.Name = "JumpHeight";
         JumpSpeed.Value = startJumpSpeed;
         floatList.Add(JumpSpeed);
         
         GravitySpeed = ScriptableObject.CreateInstance<FloatRef>();
-        GravitySpeed.Name = "FallSpeed";
+        GravitySpeed.Name = "Gravity";
         GravitySpeed.Value = startGravitySpeed;
         floatList.Add(GravitySpeed);
         
@@ -73,7 +73,7 @@ public class SwapStatsPlayer : SwapStats
         floatList.Add(Doubler);
 
         Square = ScriptableObject.CreateInstance<FloatRef>();
-        Square.Name = "Square";
+        Square.Name = "Squared";
         Square.Value = startSquare;
         floatList.Add(Square);
 
