@@ -46,9 +46,15 @@ public class PlatformTrigger : MonoBehaviour
     {
         if (!hasActived && triggerType == TriggerType.OnCollision && onTrigger != null)
         {
-            onTrigger.Invoke();
-            hasActived = true; 
-            Debug.Log("he movin'");
+            StartCoroutine(collisionDelay());
         }
+    }
+
+    private IEnumerator collisionDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        onTrigger.Invoke();
+        hasActived = true;
     }
 }
